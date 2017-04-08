@@ -1,1 +1,1 @@
-web:  sh -c "cd microblog && gunicorn blog.wsgi"
+web: gunicorn microblog.wsgi --log-file -
