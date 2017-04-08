@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block head_title %}Welcome | {{ block.super }}{% endblock %}
+<style>
+{% block style %}
+.navbar-static-top {
+	margin-bottom: 0px !important;
+	background-color: #0E3D14;
+}
+.jumbotron {
+	background-color:#0E3D14;
+	margin-top:  0px !important;
+	color: #fcf7f7;
+}
+{% endblock %}
+</style>    
+{% block jumbotron %}
+ {% if  request.user.is_authenticated %}
+<div class="jumbotron">
+<div class="container">
+	<div class="row">
+		<div class='col-sm-5  '>
+		<h1>Try Django 1.8</h1>
+		<p>The MVP Landing project is designed to get your project started. The goal is to help you launch as soon as possible with the least amount of investment using time or money. Join Us today.</p>
+		{% if  not request.user.is_authenticated %}<p>
+		<a class="btn btn-lg btn-primary" href="{% url 'registration_register' %}" role="button">Join Us  &raquo; </a>
+		{% endif %}
+		</p>
+		</div>
+		<div class='col-sm-5'  style="background-color: black; height: 300px" >
+		</div>
+ 		</div>
+		</div>
+	</div>
+ </div>
+ {% else %}
+
+ {% endif %}
+{% endblock %}
+{% block content %}
+ {% if not request.user.is_authenticated %}
+<h1>You are logged in!</h1>
+	{% if queryset %}
+	<h2>Welcome Staff</h2>
+	<table class='table'>
+	{% for instance in queryset %}
+		<tr><td>{{ forloop.counter }}</td><td>{{ instance.email }}</td><td>{{ instance.full_name }}</td><td>{{ instance.timestamp|timesince }} ago</td></tr>
+		{% if instance.email == "abc@gmail.edu" %}
+		<tr><td>is equal</td></tr>
+		{% endif %}
+	{% endfor %}
+	</table>
+	{% endif %}
+ {% else %}
+ {% if  not request.user.is_authenticated %}
+<div class="row">
+  <div class="col-sm-3 pull-right">
+			<p class='lead text-align-center'>{{ title }}</p>
+			<form method='POST' action=''>{% csrf_token %}
+			{{ form|crispy }}
+			<input class='btn btn-primary' type='submit' value='Sign Up' />
+			</form>
+	</div>
+	{% endif %}
+<div class='col-sm-3'>
+<p class='lead text-align-center'>Django &amp; Bootstrap</p>
+			<img src='{% static "img/marketing1.jpg" %}' class='img-responsive' />
+</div>
+<div class='col-sm-3'>
+<p class='lead text-align-center'>Created for Starters 
+<br/>
+<span class='fa-stack fa-lg fa-5x'>
+<i class='fa fa-comment-o fa-stack-2x'></i>
+<i style='color:yellow;' class="fa fa-bolt fa-stack-1x"></i>
+</span>
+</p>
+</div>
+<div class='col-sm-3'>
+<p class='lead text-align-center'>Always Open Source <br/><br/>
+<span class="fa-stack fa-lg fa-5x">
+<i class="fa fa-circle-o-notch fa-stack-2x"></i>
+  <!-- <i class="fa fa-square-o fa-stack-2x"></i> -->
+  <i class="fa fa-github fa-stack-1x"></i>
+</span>
+</p>
+</div>
+</div>
+</div>
+{% endif %}
+{% endblock %}

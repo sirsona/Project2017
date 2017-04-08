@@ -1,0 +1,16 @@
+body {
+  min-height: 1000px;
+}
+
+.navbar-static-top {
+  margin-bottom: 19px;
+  background-color:#0E3D14;
+ border-color: #068630;
+}
+.navbar-default .navbar-brand {
+    color: #FFF;
+
+}
+.navbar-nav:hover > li > a {
+    color: white;
+}

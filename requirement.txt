@@ -1,0 +1,10 @@
+python-3.5.2
+appdirs==1.4.3
+Django==1.10.6
+django-crispy-forms==1.6.1
+django-registration-redux==1.4
+gunicorn==19.7.1
+packaging==16.8
+pyparsing==2.2.0
+six==1.10.0
+whitenoise==3.3.0

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class='row'>
+<div class='col-md-4 col-md-offset-3'>
+{% if title %}
+<h1 class='{% if title_align_center %}text-align-center{% endif %}'>{{ title }}</h1>
+{% endif %}
+<form method='POST' action=''>{% csrf_token %}
+{{ form|crispy }}
+<input class='btn btn-primary' type='submit' value='Submit' />
+
+</form>
+</div>
+</div>
+{% endblock %}

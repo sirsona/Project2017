@@ -1,0 +1,1 @@
+web:  sh -c "cd microblog && gunicorn blog.wsgi"
